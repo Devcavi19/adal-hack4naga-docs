@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Roles - ADAL Smart Naga Documentation</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2><i class="fas fa-book"></i> ADAL Docs</h2>
+                <button class="sidebar-toggle" id="sidebarToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="../index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="../introduction.html"><i class="fas fa-info-circle"></i> Introduction</a></li>
+                    
+                    <li class="nav-section">Getting Started</li>
+                    <li><a href="../getting-started/installation.html"><i class="fas fa-download"></i> Installation</a></li>
+                    <li><a href="../getting-started/quick-start.html"><i class="fas fa-rocket"></i> Quick Start</a></li>
+                    
+                    <li class="nav-section">User Guide</li>
+                    <li><a href="roles.html" class="active"><i class="fas fa-users"></i> User Roles</a></li>
+                    <li><a href="chat-interface.html"><i class="fas fa-comments"></i> Chat Interface</a></li>
+                    <li><a href="authentication.html"><i class="fas fa-lock"></i> Authentication</a></li>
+                    
+                    <li class="nav-section">Admin Guide</li>
+                    <li><a href="../admin-guide/dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+                    <li><a href="../admin-guide/analytics.html"><i class="fas fa-chart-bar"></i> Analytics</a></li>
+                    <li><a href="../admin-guide/query-logs.html"><i class="fas fa-list"></i> Query Logs</a></li>
+                    
+                    <li class="nav-section">Configuration</li>
+                    <li><a href="../configuration/setup.html"><i class="fas fa-cog"></i> Environment Setup</a></li>
+                    <li><a href="../configuration/api-keys.html"><i class="fas fa-key"></i> API Keys</a></li>
+                    <li><a href="../configuration/deployment.html"><i class="fas fa-server"></i> Deployment</a></li>
+                    
+                    <li class="nav-section">Technical</li>
+                    <li><a href="../tech-stack.html"><i class="fas fa-layer-group"></i> Tech Stack</a></li>
+                    <li><a href="../architecture.html"><i class="fas fa-sitemap"></i> Architecture</a></li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <p>Version 1.0.0</p>
+                <a href="https://github.com/CSPC-BSCS-3B/Adal_Smart_Naga_Hackathon" target="_blank">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-header">
+                <h1>User Roles</h1>
+                <p>Understanding the different user types and their capabilities in ADAL Smart Naga</p>
+            </div>
+
+            <!-- Overview -->
+            <div class="content-section">
+                <h2 id="overview">Overview</h2>
+                <p>
+                    ADAL Smart Naga implements a role-based access control (RBAC) system with two primary user roles:
+                    <strong>Normal Users</strong> and <strong>Admin Users</strong>. Each role has distinct capabilities
+                    and access levels designed to balance functionality with security.
+                </p>
+                
+                <div class="alert alert-info">
+                    <strong>Note:</strong> User roles are assigned during account creation and stored in the Supabase 
+                    <code>user_profiles</code> table. Admin status is configured via environment variables.
+                </div>
+            </div>
+
+            <!-- Normal User Role -->
+            <div class="content-section">
+                <h2 id="normal-user">Normal User Role</h2>
+                <p>
+                    Normal users represent the primary audience for ADAL Smart Naga—CSPC students, faculty, and 
+                    (in future phases) Naga City residents seeking information about local ordinances.
+                </p>
+
+                <h3>Capabilities</h3>
+                <ul>
+                    <li><i class="fas fa-check" style="color: var(--primary-color);"></i> <strong>Chat Interface Access:</strong> Ask questions about Naga City ordinances in natural language</li>
+                    <li><i class="fas fa-check" style="color: var(--primary-color);"></i> <strong>Conversation History:</strong> View and manage past chat sessions</li>
+                    <li><i class="fas fa-check" style="color: var(--primary-color);"></i> <strong>Multi-Turn Dialogues:</strong> Ask follow-up questions that reference previous exchanges</li>
+                    <li><i class="fas fa-check" style="color: var(--primary-color);"></i> <strong>Source Attribution:</strong> Access clickable links to original ordinance documents</li>
+                    <li><i class="fas fa-check" style="color: var(--primary-color);"></i> <strong>Feedback System:</strong> Rate responses with thumbs up/down for quality improvement</li>
+                    <li><i class="fas fa-check" style="color: var(--primary-color);"></i> <strong>Profile Management:</strong> Update account information and preferences</li>
+                </ul>
+
+                <h3>Restrictions</h3>
+                <ul>
+                    <li><i class="fas fa-times" style="color: #ef4444;"></i> No access to admin dashboard</li>
+                    <li><i class="fas fa-times" style="color: #ef4444;"></i> Cannot view analytics or query logs</li>
+                    <li><i class="fas fa-times" style="color: #ef4444;"></i> Cannot export data or generate reports</li>
+                    <li><i class="fas fa-times" style="color: #ef4444;"></i> Cannot modify system configuration</li>
+                </ul>
+
+                <h3>Example Use Cases</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>User Type</th>
+                            <th>Typical Usage</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>CSPC Student</td>
+                            <td>Researching traffic ordinances for a political science project</td>
+                        </tr>
+                        <tr>
+                            <td>CSPC Faculty</td>
+                            <td>Finding examples of local governance for a civics course</td>
+                        </tr>
+                        <tr>
+                            <td>Naga Resident (Future)</td>
+                            <td>Checking senior citizen benefits eligibility</td>
+                        </tr>
+                        <tr>
+                            <td>Business Owner (Future)</td>
+                            <td>Understanding vendor permit requirements</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Admin User Role -->
+            <div class="content-section">
+                <h2 id="admin-user">Admin User Role</h2>
+                <p>
+                    Admin users have elevated privileges to monitor system health, analyze usage patterns, and 
+                    ensure optimal performance. This role is designed for system administrators, project maintainers, 
+                    and designated government stakeholders.
+                </p>
+
+                <h3>All Normal User Capabilities +</h3>
+                <p>Admin users inherit all normal user capabilities and gain the following additional features:</p>
+
+                <h3>Dashboard Access</h3>
+                <ul>
+                    <li><i class="fas fa-chart-line" style="color: var(--secondary-color);"></i> <strong>Real-Time Analytics:</strong> View query volume, active users, satisfaction rates, and response times</li>
+                    <li><i class="fas fa-chart-bar" style="color: var(--secondary-color);"></i> <strong>Data Visualizations:</strong> Charts for queries over time, top keywords, search method distribution, user satisfaction</li>
+                    <li><i class="fas fa-bell" style="color: var(--secondary-color);"></i> <strong>Anomaly Alerts:</strong> Proactive notifications for query spikes, error rates, satisfaction drops</li>
+                    <li><i class="fas fa-list" style="color: var(--secondary-color);"></i> <strong>Query Logs:</strong> Paginated view of all user queries with filters and search</li>
+                    <li><i class="fas fa-download" style="color: var(--secondary-color);"></i> <strong>Data Export:</strong> Download query logs and analytics in CSV or JSON formats</li>
+                    <li><i class="fas fa-history" style="color: var(--secondary-color);"></i> <strong>Audit Trail:</strong> Track admin actions for accountability</li>
+                </ul>
+
+                <h3>Admin Dashboard Purpose</h3>
+                <p>The admin dashboard serves several critical functions:</p>
+                <ol>
+                    <li><strong>Performance Monitoring:</strong> Track response times, error rates, and system health</li>
+                    <li><strong>User Insights:</strong> Understand what ordinances users care about most through keyword analysis</li>
+                    <li><strong>Quality Assurance:</strong> Identify low-rated responses for system improvement</li>
+                    <li><strong>Content Gap Detection:</strong> Discover topics users ask about that lack coverage in indexed ordinances</li>
+                    <li><strong>Usage Reporting:</strong> Generate reports for stakeholders (ITPO, LGU, funding agencies)</li>
+                    <li><strong>Anomaly Response:</strong> Quickly diagnose and address system issues or unusual usage patterns</li>
+                </ol>
+
+                <div class="alert alert-warning">
+                    <strong>Security Note:</strong> Admin access is restricted via Row Level Security (RLS) policies in Supabase. 
+                    Only users with <code>is_admin=true</code> in the <code>user_profiles</code> table can access admin endpoints.
+                </div>
+            </div>
+
+            <!-- Dashboard Features -->
+            <div class="content-section">
+                <h2 id="dashboard-features">Admin Dashboard Features</h2>
+                
+                <h3>1. Analytics Overview</h3>
+                <ul>
+                    <li><strong>Total Queries:</strong> Lifetime query count across all users</li>
+                    <li><strong>Active Users:</strong> Number of users who queried in the last 7 days</li>
+                    <li><strong>Satisfaction Rate:</strong> Percentage of queries rated positively</li>
+                    <li><strong>Avg Response Time:</strong> Mean time to generate answers (temporarily hidden for competition)</li>
+                </ul>
+
+                <h3>2. Visualizations</h3>
+                <ul>
+                    <li><strong>Queries Over Time (Line Chart):</strong> Daily query volume to identify trends and spikes</li>
+                    <li><strong>Top Keywords (Bar Chart):</strong> Most frequently mentioned terms extracted via TF-IDF</li>
+                    <li><strong>Search Methods (Pie Chart):</strong> Distribution of semantic vs. BM25 vs. hybrid searches</li>
+                    <li><strong>User Satisfaction (Donut Chart):</strong> Positive vs. negative feedback breakdown</li>
+                </ul>
+
+                <h3>3. Query Logs</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Column</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Timestamp</td>
+                            <td>When the query was executed</td>
+                        </tr>
+                        <tr>
+                            <td>User</td>
+                            <td>Anonymized user identifier (User#&lt;hash&gt;)</td>
+                        </tr>
+                        <tr>
+                            <td>Query Text</td>
+                            <td>User's question (truncated for display)</td>
+                        </tr>
+                        <tr>
+                            <td>Search Method</td>
+                            <td>Semantic, BM25, or Hybrid</td>
+                        </tr>
+                        <tr>
+                            <td>Response Time</td>
+                            <td>Time taken to generate answer (ms)</td>
+                        </tr>
+                        <tr>
+                            <td>Rating</td>
+                            <td>User feedback (1-5 stars or thumbs up/down)</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>4. Anomaly Detection</h3>
+                <p>Automatic alerts trigger when:</p>
+                <ul>
+                    <li><strong>Query Spike:</strong> 50% increase compared to 7-day average</li>
+                    <li><strong>High Error Rate:</strong> More than 5% of queries fail</li>
+                    <li><strong>Satisfaction Drop:</strong> Less than 60% positive ratings</li>
+                    <li><strong>Slow Responses:</strong> Average response time exceeds 3000ms (temporarily disabled)</li>
+                </ul>
+
+                <h3>5. Export Options</h3>
+                <ul>
+                    <li><strong>CSV Export:</strong> For Excel/Google Sheets analysis</li>
+                    <li><strong>JSON Export:</strong> For programmatic processing or backups</li>
+                    <li><strong>Filtered Exports:</strong> Apply date range, keyword, or rating filters before export</li>
+                </ul>
+            </div>
+
+            <!-- Assigning Admin Role -->
+            <div class="content-section">
+                <h2 id="assigning-admin">Assigning Admin Role</h2>
+                
+                <h3>Method 1: Environment Variables (Recommended)</h3>
+                <p>Add admin email addresses to <code>.env</code> file:</p>
+                <pre><code>ADMIN_EMAILS=admin@cspc.edu.ph,stakeholder@naga.gov.ph</code></pre>
+                <p>Users with these emails will automatically receive admin privileges upon signup.</p>
+
+                <h3>Method 2: Direct Database Update</h3>
+                <p>Manually set <code>is_admin=true</code> in Supabase <code>user_profiles</code> table:</p>
+                <pre><code>UPDATE user_profiles
+SET is_admin = true
+WHERE email = 'admin@cspc.edu.ph';</code></pre>
+
+                <h3>Method 3: Supabase Dashboard</h3>
+                <ol>
+                    <li>Log in to Supabase dashboard</li>
+                    <li>Navigate to Table Editor → <code>user_profiles</code></li>
+                    <li>Find the user row</li>
+                    <li>Edit <code>is_admin</code> column to <code>true</code></li>
+                    <li>Save changes</li>
+                </ol>
+
+                <div class="alert alert-error">
+                    <strong>Security Warning:</strong> Limit admin access to trusted users only. Admin users can view all 
+                    query logs and analytics, which may contain sensitive user information (though anonymized).
+                </div>
+            </div>
+
+            <!-- Accessing the Dashboard -->
+            <div class="content-section">
+                <h2 id="accessing-dashboard">Accessing the Admin Dashboard</h2>
+                
+                <h3>URL</h3>
+                <p>Admin dashboard is accessible at:</p>
+                <pre><code>http://localhost:5000/admin   (local development)
+https://your-app.render.com/admin   (production)</code></pre>
+
+                <h3>Authentication Check</h3>
+                <p>When visiting <code>/admin</code>, the system performs the following checks:</p>
+                <ol>
+                    <li>Is user logged in? → If no, redirect to <code>/login</code></li>
+                    <li>Is user an admin? → If no, show "403 Forbidden" error</li>
+                    <li>All checks pass → Display admin dashboard</li>
+                </ol>
+
+                <h3>Navigation</h3>
+                <ul>
+                    <li><strong>Dashboard Link:</strong> Visible in navbar only for admin users</li>
+                    <li><strong>Direct URL:</strong> Bookmark <code>/admin</code> for quick access</li>
+                    <li><strong>Return to Chat:</strong> Click "ADAL" logo or "Chat" in navbar</li>
+                </ul>
+            </div>
+
+            <!-- Best Practices -->
+            <div class="content-section">
+                <h2 id="best-practices">Best Practices</h2>
+                
+                <h3>For Normal Users</h3>
+                <ul>
+                    <li>Ask specific, focused questions for best results</li>
+                    <li>Use follow-up questions to clarify or dig deeper</li>
+                    <li>Rate responses to help improve the system</li>
+                    <li>Click source links to verify information in original ordinances</li>
+                </ul>
+
+                <h3>For Admin Users</h3>
+                <ul>
+                    <li>Check dashboard weekly to identify trends and issues</li>
+                    <li>Respond to anomaly alerts within 24 hours</li>
+                    <li>Export query logs monthly for long-term analysis</li>
+                    <li>Review low-rated queries to identify system improvements</li>
+                    <li>Use keyword analysis to prioritize new ordinance additions</li>
+                    <li>Share anonymized analytics with stakeholders for transparency</li>
+                </ul>
+            </div>
+
+            <!-- Next Steps -->
+            <div class="content-section">
+                <h2 id="next-steps">Next Steps</h2>
+                <div class="links-grid" style="margin-top: 2rem;">
+                    <a href="chat-interface.html" class="link-card">
+                        <i class="fas fa-comments"></i>
+                        <h3>Chat Interface</h3>
+                        <p>Learn how to use the chat feature</p>
+                    </a>
+                    
+                    <a href="../admin-guide/dashboard.html" class="link-card">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Admin Dashboard</h3>
+                        <p>Detailed admin guide and features</p>
+                    </a>
+                    
+                    <a href="authentication.html" class="link-card">
+                        <i class="fas fa-lock"></i>
+                        <h3>Authentication</h3>
+                        <p>Signup and login procedures</p>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <p>&copy; 2025 Team Virgo - CSPC BSCS-3B. Licensed under MIT License.</p>
+                <p>
+                    <a href="https://github.com/CSPC-BSCS-3B/Adal_Smart_Naga_Hackathon" target="_blank">
+                        <i class="fab fa-github"></i> View on GitHub
+                    </a>
+                </p>
+            </footer>
+        </main>
+    </div>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

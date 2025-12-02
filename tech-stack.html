@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Stack - ADAL Smart Naga Documentation</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar Navigation (same as previous pages) -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2><i class="fas fa-book"></i> ADAL Docs</h2>
+                <button class="sidebar-toggle" id="sidebarToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="introduction.html"><i class="fas fa-info-circle"></i> Introduction</a></li>
+                    
+                    <li class="nav-section">Getting Started</li>
+                    <li><a href="getting-started/installation.html"><i class="fas fa-download"></i> Installation</a></li>
+                    <li><a href="getting-started/quick-start.html"><i class="fas fa-rocket"></i> Quick Start</a></li>
+                    
+                    <li class="nav-section">User Guide</li>
+                    <li><a href="user-guide/roles.html"><i class="fas fa-users"></i> User Roles</a></li>
+                    <li><a href="user-guide/chat-interface.html"><i class="fas fa-comments"></i> Chat Interface</a></li>
+                    <li><a href="user-guide/authentication.html"><i class="fas fa-lock"></i> Authentication</a></li>
+                    
+                    <li class="nav-section">Admin Guide</li>
+                    <li><a href="admin-guide/dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+                    <li><a href="admin-guide/analytics.html"><i class="fas fa-chart-bar"></i> Analytics</a></li>
+                    <li><a href="admin-guide/query-logs.html"><i class="fas fa-list"></i> Query Logs</a></li>
+                    
+                    <li class="nav-section">Configuration</li>
+                    <li><a href="configuration/setup.html"><i class="fas fa-cog"></i> Environment Setup</a></li>
+                    <li><a href="configuration/api-keys.html"><i class="fas fa-key"></i> API Keys</a></li>
+                    <li><a href="configuration/deployment.html"><i class="fas fa-server"></i> Deployment</a></li>
+                    
+                    <li class="nav-section">Technical</li>
+                    <li><a href="tech-stack.html" class="active"><i class="fas fa-layer-group"></i> Tech Stack</a></li>
+                    <li><a href="architecture.html"><i class="fas fa-sitemap"></i> Architecture</a></li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <p>Version 1.0.0</p>
+                <a href="https://github.com/CSPC-BSCS-3B/Adal_Smart_Naga_Hackathon" target="_blank">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-header">
+                <h1>Technology Stack</h1>
+                <p>Explore the technologies powering ADAL Smart Naga's intelligent ordinance retrieval system</p>
+            </div>
+
+            <!-- Overview -->
+            <div class="content-section">
+                <h2 id="overview">Overview</h2>
+                <p>
+                    ADAL Smart Naga is built on a modern, production-ready technology stack that combines 
+                    powerful AI models, vector databases, and web frameworks to deliver fast, accurate, 
+                    and scalable ordinance retrieval.
+                </p>
+                
+                <div class="alert alert-success">
+                    <strong>Tech Philosophy:</strong> We prioritize open-source technologies with strong 
+                    community support, cloud-native architectures, and cost-effective scaling.
+                </div>
+            </div>
+
+            <!-- Backend Stack -->
+            <div class="content-section">
+                <h2 id="backend">Backend Technologies</h2>
+                
+                <h3><i class="fab fa-python"></i> Flask (Python 3.10+)</h3>
+                <p><strong>Role:</strong> Web application framework</p>
+                <p>
+                    Flask provides the lightweight, flexible foundation for our API and web interface. 
+                    Its simplicity allows rapid development while maintaining production-grade performance.
+                </p>
+                <ul>
+                    <li><strong>Why Flask?</strong> Minimal overhead, easy routing, excellent extension ecosystem</li>
+                    <li><strong>Key Features Used:</strong> Blueprint routing, Jinja2 templating, session management, Server-Sent Events (SSE)</li>
+                    <li><strong>Version:</strong> Python 3.10.9</li>
+                </ul>
+
+                <h3><i class="fas fa-brain"></i> Google Gemini 2.5 Flash</h3>
+                <p><strong>Role:</strong> Large Language Model (LLM) for answer generation</p>
+                <p>
+                    Gemini 2.5 Flash powers our natural language understanding and response generation, 
+                    transforming retrieved ordinance text into conversational answers.
+                </p>
+                <ul>
+                    <li><strong>Why Gemini?</strong> Fast inference, streaming support, competitive pricing, strong multilingual capabilities</li>
+                    <li><strong>Key Features:</strong> Streaming responses via SSE, context window up to 32K tokens, temperature control</li>
+                    <li><strong>Library:</strong> <code>google-generativeai</code>, <code>langchain_google_genai</code></li>
+                </ul>
+
+                <h3><i class="fas fa-database"></i> Qdrant Cloud</h3>
+                <p><strong>Role:</strong> Vector database for semantic search</p>
+                <p>
+                    Qdrant stores and searches document embeddings, enabling semantic understanding 
+                    of user queries beyond simple keyword matching.
+                </p>
+                <ul>
+                    <li><strong>Why Qdrant?</strong> High-performance vector search, cloud-hosted, generous free tier, excellent Python SDK</li>
+                    <li><strong>Collection:</strong> <code>naga_ordinances</code> with 384-dimensional vectors</li>
+                    <li><strong>Retrieval Method:</strong> Cosine similarity with configurable top-K</li>
+                    <li><strong>Library:</strong> <code>qdrant-client</code></li>
+                </ul>
+
+                <h3><i class="fas fa-text-width"></i> sentence-transformers/all-MiniLM-L6-v2</h3>
+                <p><strong>Role:</strong> Embedding model for text vectorization</p>
+                <p>
+                    This lightweight model converts text into 384-dimensional vectors for semantic search, 
+                    balancing quality with speed and resource efficiency.
+                </p>
+                <ul>
+                    <li><strong>Why MiniLM?</strong> Fast inference, small memory footprint, good performance on retrieval tasks</li>
+                    <li><strong>Embedding Dimension:</strong> 384</li>
+                    <li><strong>Average Latency:</strong> ~50ms per query</li>
+                    <li><strong>Library:</strong> <code>sentence-transformers</code></li>
+                </ul>
+
+                <h3><i class="fas fa-search"></i> BM25Okapi</h3>
+                <p><strong>Role:</strong> Keyword-based search algorithm</p>
+                <p>
+                    BM25 (Best Matching 25) provides traditional keyword matching to complement semantic search, 
+                    especially useful for exact ordinance number lookups.
+                </p>
+                <ul>
+                    <li><strong>Why BM25?</strong> Fast, deterministic, excellent for exact matches, no training required</li>
+                    <li><strong>Use Cases:</strong> Ordinance number queries (e.g., "ord2023-045"), specific term lookups</li>
+                    <li><strong>Weight in Hybrid:</strong> 30% (configurable)</li>
+                    <li><strong>Library:</strong> <code>rank-bm25</code></li>
+                </ul>
+
+                <h3><i class="fas fa-shield-alt"></i> Supabase</h3>
+                <p><strong>Role:</strong> Authentication and PostgreSQL database</p>
+                <p>
+                    Supabase provides authentication (email/password, OAuth), PostgreSQL database, 
+                    and Row Level Security (RLS) for data protection.
+                </p>
+                <ul>
+                    <li><strong>Why Supabase?</strong> Open-source Firebase alternative, built-in auth, generous free tier, RLS policies</li>
+                    <li><strong>Tables:</strong> user_profiles, chat_sessions, query_analytics, admin_notifications, etc.</li>
+                    <li><strong>Auth Methods:</strong> Email/password, Google OAuth</li>
+                    <li><strong>Library:</strong> <code>supabase</code> Python client</li>
+                </ul>
+            </div>
+
+            <!-- Frontend Stack -->
+            <div class="content-section">
+                <h2 id="frontend">Frontend Technologies</h2>
+                
+                <h3><i class="fab fa-html5"></i> Jinja2 Templates</h3>
+                <p><strong>Role:</strong> Server-side HTML templating</p>
+                <ul>
+                    <li>Dynamic content rendering with Python variables</li>
+                    <li>Template inheritance for consistent layouts</li>
+                    <li>Conditional rendering based on user role (normal vs. admin)</li>
+                </ul>
+
+                <h3><i class="fab fa-css3-alt"></i> Custom CSS</h3>
+                <p><strong>Role:</strong> Responsive styling and UI design</p>
+                <ul>
+                    <li>Mobile-first responsive design</li>
+                    <li>Dark sidebar navigation inspired by modern documentation sites</li>
+                    <li>Custom color scheme: Green primary (#10b981), Blue secondary (#3b82f6)</li>
+                </ul>
+
+                <h3><i class="fab fa-js"></i> Vanilla JavaScript</h3>
+                <p><strong>Role:</strong> Client-side interactivity</p>
+                <ul>
+                    <li>Chat interface with streaming message display</li>
+                    <li>Server-Sent Events (SSE) for real-time responses</li>
+                    <li>Conversation history management</li>
+                    <li>Feedback rating system (thumbs up/down)</li>
+                </ul>
+
+                <h3><i class="fas fa-chart-pie"></i> Chart.js</h3>
+                <p><strong>Role:</strong> Data visualization in admin dashboard</p>
+                <ul>
+                    <li>Line charts for query trends over time</li>
+                    <li>Bar charts for top keyword analysis</li>
+                    <li>Pie/donut charts for search method distribution and satisfaction rates</li>
+                </ul>
+
+                <h3><i class="fas fa-icons"></i> Font Awesome 6.4.0</h3>
+                <p><strong>Role:</strong> Icon library</p>
+                <ul>
+                    <li>Navigation icons in sidebar</li>
+                    <li>Feature illustrations on landing page</li>
+                    <li>Button icons for actions (copy, export, etc.)</li>
+                </ul>
+            </div>
+
+            <!-- Document Processing -->
+            <div class="content-section">
+                <h2 id="document-processing">Document Processing</h2>
+                
+                <h3><i class="fas fa-file-pdf"></i> Docling</h3>
+                <p><strong>Role:</strong> Advanced PDF extraction with OCR</p>
+                <ul>
+                    <li>Handles both text-based and scanned PDFs</li>
+                    <li>Preserves document structure (headings, sections, lists)</li>
+                    <li>Integrates Tesseract OCR for image-based text</li>
+                </ul>
+
+                <h3><i class="fas fa-cut"></i> LangChain RecursiveCharacterTextSplitter</h3>
+                <p><strong>Role:</strong> Text chunking for vector storage</p>
+                <ul>
+                    <li><strong>Chunk Size:</strong> 512 tokens</li>
+                    <li><strong>Overlap:</strong> 50 tokens (preserves context across chunks)</li>
+                    <li><strong>Separators:</strong> Respects sentence and paragraph boundaries</li>
+                </ul>
+
+                <h3><i class="fas fa-code"></i> PyPDF2</h3>
+                <p><strong>Role:</strong> PDF metadata and text extractability analysis</p>
+                <ul>
+                    <li>Detects if PDFs contain extractable text</li>
+                    <li>Identifies scanned documents requiring OCR</li>
+                    <li>Extracts page counts and metadata</li>
+                </ul>
+            </div>
+
+            <!-- Analytics & Data -->
+            <div class="content-section">
+                <h2 id="analytics">Analytics & Data Processing</h2>
+                
+                <h3><i class="fab fa-python"></i> scikit-learn</h3>
+                <p><strong>Role:</strong> Machine learning utilities</p>
+                <ul>
+                    <li><strong>TF-IDF:</strong> Extracts top keywords from user queries</li>
+                    <li><strong>Vectorization:</strong> Text analysis for trending topics</li>
+                    <li><strong>Use Case:</strong> Identifies what ordinance topics users care about most</li>
+                </ul>
+
+                <h3><i class="fas fa-table"></i> Pandas</h3>
+                <p><strong>Role:</strong> Data manipulation and export</p>
+                <ul>
+                    <li>Query log aggregation and filtering</li>
+                    <li>CSV/JSON export generation</li>
+                    <li>Time series analysis for query trends</li>
+                </ul>
+
+                <h3><i class="fas fa-calculator"></i> NumPy</h3>
+                <p><strong>Role:</strong> Numerical computations</p>
+                <ul>
+                    <li>Score normalization for hybrid search</li>
+                    <li>Statistical calculations (averages, percentiles)</li>
+                    <li>Array operations for batch processing</li>
+                </ul>
+            </div>
+
+            <!-- Infrastructure -->
+            <div class="content-section">
+                <h2 id="infrastructure">Infrastructure & Deployment</h2>
+                
+                <h3><i class="fas fa-cloud"></i> Render.com (Recommended)</h3>
+                <p><strong>Role:</strong> Web application hosting</p>
+                <ul>
+                    <li><strong>Free Tier:</strong> 750 hours/month (sufficient for demos)</li>
+                    <li><strong>Paid Tier:</strong> $7/month for always-on deployment</li>
+                    <li><strong>Features:</strong> Automatic deployments from GitHub, environment variables, health checks</li>
+                </ul>
+
+                <h3><i class="fab fa-github"></i> GitHub</h3>
+                <p><strong>Role:</strong> Version control and CI/CD</p>
+                <ul>
+                    <li>Repository: <code>CSPC-BSCS-3B/Adal_Smart_Naga_Hackathon</code></li>
+                    <li>Branches: <code>main</code> (stable), <code>deploy/railway</code> (deployment)</li>
+                    <li>License: MIT (open source)</li>
+                </ul>
+
+                <h3><i class="fas fa-code-branch"></i> GitHub Codespaces (Development)</h3>
+                <p><strong>Role:</strong> Cloud development environment</p>
+                <ul>
+                    <li>Pre-configured Python environment</li>
+                    <li>No local setup required</li>
+                    <li><strong>Note:</strong> Sleeps after 15 minutes of inactivity (free tier limitation)</li>
+                </ul>
+            </div>
+
+            <!-- Architecture Diagram -->
+            <div class="content-section">
+                <h2 id="architecture-diagram">System Architecture</h2>
+                <pre><code>┌─────────────────────────────────────────────────────────────────┐
+│                         USER INTERFACE                          │
+│                  (Flask Jinja2 Templates + JS)                  │
+└───────────────────────────────┬─────────────────────────────────┘
+                                │
+                                ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                     FLASK APPLICATION                           │
+│  ┌──────────────┐  ┌──────────────┐  ┌────────────────────┐   │
+│  │   Routes     │  │  Auth Service │  │   RAG Service      │   │
+│  │   (API)      │  │  (Supabase)  │  │  (Hybrid Search)   │   │
+│  └──────────────┘  └──────────────┘  └────────────────────┘   │
+└───────────────────────────────┬─────────────────────────────────┘
+                                │
+                ┌───────────────┼───────────────┐
+                ▼               ▼               ▼
+        ┌──────────────┐ ┌──────────┐ ┌──────────────┐
+        │   Qdrant     │ │   BM25   │ │   Gemini     │
+        │   Vector DB  │ │  Index   │ │   LLM API    │
+        │ (Semantic)   │ │(Keyword) │ │ (Generation) │
+        └──────────────┘ └──────────┘ └──────────────┘
+                │               │               │
+                └───────────────┼───────────────┘
+                                ▼
+                        ┌──────────────┐
+                        │   Supabase   │
+                        │  PostgreSQL  │
+                        │  (Analytics) │
+                        └──────────────┘</code></pre>
+                
+                <h3>Request Flow</h3>
+                <ol>
+                    <li><strong>User Query:</strong> User types question in chat interface</li>
+                    <li><strong>Authentication:</strong> Session validated via Supabase</li>
+                    <li><strong>Hybrid Search:</strong>
+                        <ul>
+                            <li>Query vectorized via MiniLM embeddings</li>
+                            <li>Qdrant searches vectors (70% weight)</li>
+                            <li>BM25 searches keywords (30% weight)</li>
+                            <li>Scores normalized and fused</li>
+                        </ul>
+                    </li>
+                    <li><strong>Context Building:</strong> Top 5 ordinance chunks retrieved</li>
+                    <li><strong>LLM Generation:</strong> Gemini generates answer from context</li>
+                    <li><strong>Streaming Response:</strong> Answer streamed to UI via SSE</li>
+                    <li><strong>Analytics Logging:</strong> Query metadata saved to Supabase</li>
+                </ol>
+            </div>
+
+            <!-- Dependencies -->
+            <div class="content-section">
+                <h2 id="dependencies">Key Dependencies</h2>
+                <pre><code># requirements.txt
+Flask                           # Web framework
+supabase                        # Auth and database
+qdrant-client                   # Vector database
+sentence-transformers           # Embeddings
+google-generativeai             # Gemini LLM
+langchain_core                  # RAG utilities
+langchain_google_genai          # LangChain Gemini integration
+rank-bm25                       # Keyword search
+scikit-learn                    # ML utilities
+pandas                          # Data processing
+numpy                           # Numerical computing
+python-dotenv                   # Environment variables</code></pre>
+            </div>
+
+            <!-- Performance Metrics -->
+            <div class="content-section">
+                <h2 id="performance">Performance Metrics</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Metric</th>
+                            <th>Value</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Vector Search Latency</td>
+                            <td>&lt;200ms</td>
+                            <td>Qdrant cloud retrieval</td>
+                        </tr>
+                        <tr>
+                            <td>BM25 Search Latency</td>
+                            <td>&lt;50ms</td>
+                            <td>In-memory index lookup</td>
+                        </tr>
+                        <tr>
+                            <td>LLM Generation Time</td>
+                            <td>1-3s</td>
+                            <td>Depends on response length</td>
+                        </tr>
+                        <tr>
+                            <td>Total Response Time</td>
+                            <td>&lt;5s</td>
+                            <td>End-to-end query to answer</td>
+                        </tr>
+                        <tr>
+                            <td>Embedding Generation</td>
+                            <td>~50ms</td>
+                            <td>Per query vectorization</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Scalability -->
+            <div class="content-section">
+                <h2 id="scalability">Scalability Considerations</h2>
+                
+                <h3>Current Limitations (Free Tiers)</h3>
+                <ul>
+                    <li><strong>Qdrant Cloud:</strong> 1GB vector storage (sufficient for ~10,000 ordinance chunks)</li>
+                    <li><strong>Supabase:</strong> 500MB database, 2GB bandwidth (adequate for pilot)</li>
+                    <li><strong>Gemini API:</strong> Pay-as-you-go (low cost for moderate usage)</li>
+                    <li><strong>Render Free Tier:</strong> Sleeps after inactivity, slower cold starts</li>
+                </ul>
+
+                <h3>Scaling Path (Paid Tiers)</h3>
+                <ul>
+                    <li><strong>Render Starter:</strong> $7/month for always-on, faster instances</li>
+                    <li><strong>Qdrant Paid:</strong> $25/month for 4GB storage + higher throughput</li>
+                    <li><strong>Supabase Pro:</strong> $25/month for 8GB database + unlimited API requests</li>
+                    <li><strong>Gemini Pricing:</strong> ~$0.10 per 1M input tokens (very affordable)</li>
+                </ul>
+
+                <h3>Performance Optimizations</h3>
+                <ul>
+                    <li>Caching popular queries (Redis integration possible)</li>
+                    <li>BM25 index pre-loading on startup</li>
+                    <li>Connection pooling for database queries</li>
+                    <li>Async processing for analytics logging</li>
+                </ul>
+            </div>
+
+            <!-- Next Steps -->
+            <div class="content-section">
+                <h2 id="next-steps">Next Steps</h2>
+                <div class="links-grid" style="margin-top: 2rem;">
+                    <a href="architecture.html" class="link-card">
+                        <i class="fas fa-sitemap"></i>
+                        <h3>Architecture</h3>
+                        <p>Deep dive into system design</p>
+                    </a>
+                    
+                    <a href="configuration/setup.html" class="link-card">
+                        <i class="fas fa-cog"></i>
+                        <h3>Configuration</h3>
+                        <p>Set up environment variables</p>
+                    </a>
+                    
+                    <a href="getting-started/installation.html" class="link-card">
+                        <i class="fas fa-download"></i>
+                        <h3>Installation</h3>
+                        <p>Get started with deployment</p>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <p>&copy; 2025 Team Virgo - CSPC BSCS-3B. Licensed under MIT License.</p>
+                <p>
+                    <a href="https://github.com/CSPC-BSCS-3B/Adal_Smart_Naga_Hackathon" target="_blank">
+                        <i class="fab fa-github"></i> View on GitHub
+                    </a>
+                </p>
+            </footer>
+        </main>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

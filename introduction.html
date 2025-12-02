@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction - ADAL Smart Naga Documentation</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2><i class="fas fa-book"></i> ADAL Docs</h2>
+                <button class="sidebar-toggle" id="sidebarToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="introduction.html" class="active"><i class="fas fa-info-circle"></i> Introduction</a></li>
+                    
+                    <li class="nav-section">Getting Started</li>
+                    <li><a href="getting-started/installation.html"><i class="fas fa-download"></i> Installation</a></li>
+                    <li><a href="getting-started/quick-start.html"><i class="fas fa-rocket"></i> Quick Start</a></li>
+                    
+                    <li class="nav-section">User Guide</li>
+                    <li><a href="user-guide/roles.html"><i class="fas fa-users"></i> User Roles</a></li>
+                    <li><a href="user-guide/chat-interface.html"><i class="fas fa-comments"></i> Chat Interface</a></li>
+                    <li><a href="user-guide/authentication.html"><i class="fas fa-lock"></i> Authentication</a></li>
+                    
+                    <li class="nav-section">Admin Guide</li>
+                    <li><a href="admin-guide/dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+                    <li><a href="admin-guide/analytics.html"><i class="fas fa-chart-bar"></i> Analytics</a></li>
+                    <li><a href="admin-guide/query-logs.html"><i class="fas fa-list"></i> Query Logs</a></li>
+                    
+                    <li class="nav-section">Configuration</li>
+                    <li><a href="configuration/setup.html"><i class="fas fa-cog"></i> Environment Setup</a></li>
+                    <li><a href="configuration/api-keys.html"><i class="fas fa-key"></i> API Keys</a></li>
+                    <li><a href="configuration/deployment.html"><i class="fas fa-server"></i> Deployment</a></li>
+                    
+                    <li class="nav-section">Technical</li>
+                    <li><a href="tech-stack.html"><i class="fas fa-layer-group"></i> Tech Stack</a></li>
+                    <li><a href="architecture.html"><i class="fas fa-sitemap"></i> Architecture</a></li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <p>Version 1.0.0</p>
+                <a href="https://github.com/CSPC-BSCS-3B/Adal_Smart_Naga_Hackathon" target="_blank">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-header">
+                <h1>Introduction to ADAL Smart Naga</h1>
+                <p>Understanding the purpose and vision behind the AI-powered ordinance chatbot for Naga City</p>
+            </div>
+
+            <!-- The Problem -->
+            <div class="content-section">
+                <h2 id="the-problem">The Problem</h2>
+                <p>
+                    Access to government information is a fundamental right of every citizen. However, in Naga City, 
+                    like many local government units in the Philippines, ordinances and regulations are scattered 
+                    across hundreds of PDF documents. This creates several challenges:
+                </p>
+                <ul>
+                    <li><strong>Difficult Discovery:</strong> Finding relevant ordinances requires knowing exact ordinance numbers or manually searching through multiple files</li>
+                    <li><strong>Time-Consuming:</strong> Reading through lengthy PDF documents to find specific information takes hours</li>
+                    <li><strong>Technical Barrier:</strong> Not everyone is comfortable navigating government websites or file systems</li>
+                    <li><strong>Language Complexity:</strong> Legal language in ordinances can be difficult to understand for average citizens</li>
+                    <li><strong>Limited Accessibility:</strong> PDFs are not mobile-friendly and don't support conversational queries</li>
+                </ul>
+                
+                <div class="alert alert-warning">
+                    <strong>Real Impact:</strong> Citizens who need information about business permits, traffic regulations, 
+                    or their rights often give up searching or rely on incomplete secondhand information.
+                </div>
+            </div>
+
+            <!-- The Solution -->
+            <div class="content-section">
+                <h2 id="the-solution">The Solution</h2>
+                <p>
+                    ADAL Smart Naga transforms government transparency through conversational AI. Instead of 
+                    searching through PDFs, citizens can simply ask questions in plain English and receive 
+                    instant, accurate answers with source citations.
+                </p>
+                
+                <h3>How It Works</h3>
+                <ol>
+                    <li><strong>User asks a question:</strong> "What are the penalties for noise violations in Naga City?"</li>
+                    <li><strong>Hybrid search:</strong> The system combines semantic understanding (70%) with keyword matching (30%) to find relevant ordinance sections</li>
+                    <li><strong>AI generation:</strong> Google Gemini 2.5 Flash generates a natural language answer based on retrieved ordinances</li>
+                    <li><strong>Source attribution:</strong> Every answer includes clickable links to the original ordinance documents</li>
+                    <li><strong>Conversation memory:</strong> Follow-up questions are understood in context for natural dialogue</li>
+                </ol>
+
+                <h3>Key Innovations</h3>
+                <ul>
+                    <li><strong>Retrieval-Augmented Generation (RAG):</strong> Ensures answers are grounded in actual ordinance text, not hallucinated</li>
+                    <li><strong>Hybrid Search:</strong> Balances semantic understanding with exact keyword matching for optimal accuracy</li>
+                    <li><strong>OCR Processing:</strong> Handles both modern PDFs and scanned historical documents</li>
+                    <li><strong>Streaming Responses:</strong> Real-time answer generation for better user experience</li>
+                </ul>
+            </div>
+
+            <!-- Target Users -->
+            <div class="content-section">
+                <h2 id="target-users">Target Users</h2>
+                
+                <h3>Primary Users: CSPC Community</h3>
+                <p>
+                    Currently, ADAL Smart Naga is available exclusively to the Camarines Sur Polytechnic 
+                    Colleges (CSPC) community via <code>@cspc.edu.ph</code> and <code>@my.cspc.edu.ph</code> email addresses.
+                </p>
+                <ul>
+                    <li><strong>Students:</strong> Research Naga City governance for academic projects, understand local regulations for community engagement</li>
+                    <li><strong>Faculty & Researchers:</strong> Quick access to ordinances for case studies, teaching resources for civics courses</li>
+                    <li><strong>Administrators:</strong> Reference material for institutional compliance with local regulations</li>
+                </ul>
+
+                <h3>Future Expansion: Public Access</h3>
+                <p>
+                    The pilot program with CSPC will inform expansion to all Naga City residents and stakeholders:
+                </p>
+                <ul>
+                    <li><strong>Citizens:</strong> Understand rights, benefits, and obligations under city ordinances</li>
+                    <li><strong>Business Owners:</strong> Research permit requirements and compliance regulations</li>
+                    <li><strong>Government Employees:</strong> Quick reference tool for public inquiries and policy questions</li>
+                    <li><strong>Journalists & Advocates:</strong> Access to government documents for transparency work</li>
+                </ul>
+            </div>
+
+            <!-- Value Proposition -->
+            <div class="content-section">
+                <h2 id="value-proposition">Value Proposition</h2>
+                
+                <h3>For Citizens</h3>
+                <ul>
+                    <li><i class="fas fa-clock" style="color: var(--primary-color);"></i> <strong>Save Time:</strong> Get answers in seconds instead of hours of PDF searching</li>
+                    <li><i class="fas fa-comments" style="color: var(--primary-color);"></i> <strong>Natural Language:</strong> Ask questions conversationally, no technical knowledge required</li>
+                    <li><i class="fas fa-link" style="color: var(--primary-color);"></i> <strong>Verifiable Answers:</strong> Every response links to original ordinance documents</li>
+                    <li><i class="fas fa-mobile-alt" style="color: var(--primary-color);"></i> <strong>Mobile Friendly:</strong> Access from any device, anywhere</li>
+                </ul>
+
+                <h3>For Government</h3>
+                <ul>
+                    <li><i class="fas fa-eye" style="color: var(--secondary-color);"></i> <strong>Transparency:</strong> Demonstrates commitment to open government and citizen engagement</li>
+                    <li><i class="fas fa-phone-volume" style="color: var(--secondary-color);"></i> <strong>Reduced Inquiries:</strong> Automated answers free up staff for complex citizen services</li>
+                    <li><i class="fas fa-chart-line" style="color: var(--secondary-color);"></i> <strong>Usage Analytics:</strong> Understand which ordinances citizens care about most</li>
+                    <li><i class="fas fa-expand-arrows-alt" style="color: var(--secondary-color);"></i> <strong>Scalable:</strong> Can expand to other cities, provinces, or national agencies</li>
+                </ul>
+
+                <h3>For Developers</h3>
+                <ul>
+                    <li><i class="fas fa-code" style="color: var(--text-primary);"></i> <strong>Open Source:</strong> MIT License allows community contributions and customization</li>
+                    <li><i class="fas fa-puzzle-piece" style="color: var(--text-primary);"></i> <strong>Modern Stack:</strong> Flask, Qdrant, Gemini, Supabase - production-ready technologies</li>
+                    <li><i class="fas fa-book-open" style="color: var(--text-primary);"></i> <strong>Well Documented:</strong> Complete setup guides, API references, and architecture docs</li>
+                    <li><i class="fas fa-rocket" style="color: var(--text-primary);"></i> <strong>Easy Deployment:</strong> One-click deployment to Render, Railway, or other platforms</li>
+                </ul>
+            </div>
+
+            <!-- Use Cases -->
+            <div class="content-section">
+                <h2 id="use-cases">Real-World Use Cases</h2>
+                
+                <h3>Example Queries</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Scenario</th>
+                            <th>Query</th>
+                            <th>ADAL Response</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Business Owner</td>
+                            <td>"What are the requirements for street vendor permits?"</td>
+                            <td>Lists registration requirements, fees, and penalties from relevant ordinances with document links</td>
+                        </tr>
+                        <tr>
+                            <td>Senior Citizen</td>
+                            <td>"What benefits am I entitled to?"</td>
+                            <td>Explains senior citizen benefits, eligibility, and how to claim them</td>
+                        </tr>
+                        <tr>
+                            <td>Student Researcher</td>
+                            <td>"Find all ordinances related to traffic management"</td>
+                            <td>Retrieves and summarizes multiple ordinances on traffic, parking, and road safety</td>
+                        </tr>
+                        <tr>
+                            <td>Homeowner</td>
+                            <td>"What is Ordinance 2025-047 about?"</td>
+                            <td>Provides full summary with title, purpose, key provisions, and penalties</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Vision & Roadmap -->
+            <div class="content-section">
+                <h2 id="vision">Vision & Roadmap</h2>
+                
+                <h3>Current Phase: CSPC Pilot (Q4 2025)</h3>
+                <ul>
+                    <li>✅ Core RAG system with 24+ ordinances indexed</li>
+                    <li>✅ Authentication via CSPC email domain</li>
+                    <li>✅ Admin dashboard for usage analytics</li>
+                    <li>🔄 Gathering user feedback and usage patterns</li>
+                </ul>
+
+                <h3>Phase 2: Public Launch (Q1 2026)</h3>
+                <ul>
+                    <li>Remove domain restrictions for all Naga City residents</li>
+                    <li>Expand ordinance coverage to complete 13th-15th Sangunian</li>
+                    <li>Add city council resolutions and government announcements</li>
+                    <li>Deploy to official Naga City subdomain</li>
+                </ul>
+
+                <h3>Phase 3: Enhanced Features (Q2 2026)</h3>
+                <ul>
+                    <li>Multilingual support (English, Bicol, Filipino)</li>
+                    <li>Voice input/output for accessibility</li>
+                    <li>Mobile app (iOS/Android)</li>
+                    <li>SMS-based queries for low-bandwidth areas</li>
+                </ul>
+
+                <h3>Phase 4: Regional Expansion (2026+)</h3>
+                <ul>
+                    <li>Replicate for other cities in Camarines Sur</li>
+                    <li>Provincial-level ordinance aggregation</li>
+                    <li>Integration with LGU websites and Facebook pages</li>
+                    <li>Barangay information kiosks</li>
+                </ul>
+            </div>
+
+            <!-- Next Steps -->
+            <div class="content-section">
+                <h2 id="next-steps">Next Steps</h2>
+                <p>Ready to get started? Here's what to do next:</p>
+                
+                <div class="links-grid" style="margin-top: 2rem;">
+                    <a href="getting-started/installation.html" class="link-card">
+                        <i class="fas fa-download"></i>
+                        <h3>Installation</h3>
+                        <p>Set up ADAL on your local machine</p>
+                    </a>
+                    
+                    <a href="user-guide/roles.html" class="link-card">
+                        <i class="fas fa-users"></i>
+                        <h3>User Roles</h3>
+                        <p>Understand user types and permissions</p>
+                    </a>
+                    
+                    <a href="tech-stack.html" class="link-card">
+                        <i class="fas fa-layer-group"></i>
+                        <h3>Tech Stack</h3>
+                        <p>Explore the technologies used</p>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <p>&copy; 2025 Team Virgo - CSPC BSCS-3B. Licensed under MIT License.</p>
+                <p>
+                    <a href="https://github.com/CSPC-BSCS-3B/Adal_Smart_Naga_Hackathon" target="_blank">
+                        <i class="fab fa-github"></i> View on GitHub
+                    </a>
+                </p>
+            </footer>
+        </main>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

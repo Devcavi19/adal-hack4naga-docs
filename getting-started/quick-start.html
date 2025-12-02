@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick Start - ADAL Smart Naga Documentation</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2><i class="fas fa-book"></i> ADAL Docs</h2>
+                <button class="sidebar-toggle" id="sidebarToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="../index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="../introduction.html"><i class="fas fa-info-circle"></i> Introduction</a></li>
+                    
+                    <li class="nav-section">Getting Started</li>
+                    <li><a href="installation.html"><i class="fas fa-download"></i> Installation</a></li>
+                    <li><a href="quick-start.html" class="active"><i class="fas fa-rocket"></i> Quick Start</a></li>
+                    
+                    <li class="nav-section">User Guide</li>
+                    <li><a href="../user-guide/roles.html"><i class="fas fa-users"></i> User Roles</a></li>
+                    <li><a href="../user-guide/chat-interface.html"><i class="fas fa-comments"></i> Chat Interface</a></li>
+                    <li><a href="../user-guide/authentication.html"><i class="fas fa-lock"></i> Authentication</a></li>
+                    
+                    <li class="nav-section">Admin Guide</li>
+                    <li><a href="../admin-guide/dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+                    <li><a href="../admin-guide/analytics.html"><i class="fas fa-chart-bar"></i> Analytics</a></li>
+                    <li><a href="../admin-guide/query-logs.html"><i class="fas fa-list"></i> Query Logs</a></li>
+                    
+                    <li class="nav-section">Configuration</li>
+                    <li><a href="../configuration/setup.html"><i class="fas fa-cog"></i> Environment Setup</a></li>
+                    <li><a href="../configuration/api-keys.html"><i class="fas fa-key"></i> API Keys</a></li>
+                    <li><a href="../configuration/deployment.html"><i class="fas fa-server"></i> Deployment</a></li>
+                    
+                    <li class="nav-section">Technical</li>
+                    <li><a href="../tech-stack.html"><i class="fas fa-layer-group"></i> Tech Stack</a></li>
+                    <li><a href="../architecture.html"><i class="fas fa-sitemap"></i> Architecture</a></li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <p>Version 1.0.0</p>
+                <a href="https://github.com/CSPC-BSCS-3B/Adal_Smart_Naga_Hackathon" target="_blank">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-header">
+                <h1>Quick Start Guide</h1>
+                <p>Get ADAL Smart Naga running on your local machine in 5 minutes</p>
+            </div>
+
+            <!-- Prerequisites -->
+            <div class="content-section">
+                <h2 id="prerequisites">Prerequisites</h2>
+                <p>Before you begin, ensure you have:</p>
+                <ul>
+                    <li><i class="fab fa-python"></i> <strong>Python 3.10+</strong> installed (<code>python --version</code>)</li>
+                    <li><i class="fab fa-git"></i> <strong>Git</strong> for cloning the repository</li>
+                    <li><i class="fas fa-terminal"></i> <strong>Terminal/Command Prompt</strong> access</li>
+                    <li><i class="fas fa-key"></i> <strong>API Keys</strong> for Google Gemini, Qdrant, and Supabase (see <a href="../configuration/setup.html">Configuration Guide</a>)</li>
+                </ul>
+            </div>
+
+            <!-- Step 1: Clone Repository -->
+            <div class="content-section">
+                <h2 id="step1">Step 1: Clone the Repository</h2>
+                <pre><code>git clone https://github.com/CSPC-BSCS-3B/Adal_Smart_Naga_Hackathon.git
+cd Adal_Smart_Naga_Hackathon</code></pre>
+            </div>
+
+            <!-- Step 2: Create Virtual Environment -->
+            <div class="content-section">
+                <h2 id="step2">Step 2: Create Virtual Environment</h2>
+                <h3>On Linux/macOS:</h3>
+                <pre><code>python3 -m venv hacknagaENV
+source hacknagaENV/bin/activate</code></pre>
+
+                <h3>On Windows:</h3>
+                <pre><code>python -m venv hacknagaENV
+hacknagaENV\Scripts\activate</code></pre>
+
+                <div class="alert alert-info">
+                    <strong>Verify Activation:</strong> Your terminal prompt should show <code>(hacknagaENV)</code> prefix
+                </div>
+            </div>
+
+            <!-- Step 3: Install Dependencies -->
+            <div class="content-section">
+                <h2 id="step3">Step 3: Install Dependencies</h2>
+                <pre><code>pip install -r requirements.txt</code></pre>
+
+                <p><strong>Expected Installation Time:</strong> 2-5 minutes depending on your internet speed</p>
+                
+                <h3>Key Packages Installed:</h3>
+                <ul>
+                    <li>Flask (web framework)</li>
+                    <li>supabase (authentication)</li>
+                    <li>qdrant-client (vector database)</li>
+                    <li>sentence-transformers (embeddings)</li>
+                    <li>google-generativeai (Gemini LLM)</li>
+                    <li>rank-bm25 (keyword search)</li>
+                    <li>scikit-learn, pandas, numpy (analytics)</li>
+                </ul>
+            </div>
+
+            <!-- Step 4: Configure Environment -->
+            <div class="content-section">
+                <h2 id="step4">Step 4: Configure Environment Variables</h2>
+                <p>Create a <code>.env</code> file in the project root:</p>
+                <pre><code># Create .env file
+touch .env
+
+# Edit with your favorite editor
+nano .env   # or vim, code, notepad, etc.</code></pre>
+
+                <p><strong>Add the following content:</strong></p>
+                <pre><code># Flask
+SECRET_KEY=your_secret_key_here
+DEBUG=True
+
+# Google Gemini
+GOOGLE_API_KEY=AIzaSy...your_key_here
+GEMINI_MODEL=gemini-2.5-flash
+
+# Qdrant
+QDRANT_URL=https://your-cluster.qdrant.io
+QDRANT_API_KEY=your_qdrant_api_key
+COLLECTION_NAME=naga_ordinances
+
+# Embedding Model
+EMBEDDING_MODEL=sentence-transformers/all-MiniLM-L6-v2
+
+# Data Directory
+DATA_DIR=/full/path/to/Adal_Smart_Naga_Hackathon/index
+
+# Supabase
+SUPABASE_URL=https://your-project.supabase.co
+SUPABASE_KEY=your_supabase_anon_key
+SUPABASE_SERVICE_KEY=your_supabase_service_key
+
+# App URL
+APP_URL=http://localhost:5000
+
+# Admin Emails
+ADMIN_EMAILS=admin@cspc.edu.ph</code></pre>
+
+                <div class="alert alert-warning">
+                    <strong>Don't have API keys yet?</strong> Follow the <a href="../configuration/setup.html">Environment Setup Guide</a> 
+                    to get your credentials.
+                </div>
+            </div>
+
+            <!-- Step 5: Set Up Database -->
+            <div class="content-section">
+                <h2 id="step5">Step 5: Set Up Supabase Database</h2>
+                <p>Run the database migration to create required tables:</p>
+                
+                <h3>Option 1: Using Supabase Dashboard (Recommended)</h3>
+                <ol>
+                    <li>Go to your Supabase project dashboard</li>
+                    <li>Navigate to <strong>SQL Editor</strong></li>
+                    <li>Open <code>database_migration.sql</code> from the project</li>
+                    <li>Copy and paste the SQL into the editor</li>
+                    <li>Click <strong>Run</strong></li>
+                </ol>
+
+                <h3>Option 2: Using psql (Advanced)</h3>
+                <pre><code>psql "postgresql://postgres:[YOUR-PASSWORD]@[YOUR-PROJECT].supabase.co:5432/postgres" \
+  -f database_migration.sql</code></pre>
+
+                <h3>Tables Created:</h3>
+                <ul>
+                    <li><code>user_profiles</code> - User accounts and metadata</li>
+                    <li><code>chat_sessions</code> - Conversation sessions</li>
+                    <li><code>chat_messages</code> - Individual messages</li>
+                    <li><code>query_analytics</code> - Query metrics</li>
+                    <li><code>user_feedback</code> - Rating system</li>
+                    <li><code>error_logs</code> - System errors</li>
+                    <li><code>admin_audit_log</code> - Admin actions</li>
+                    <li><code>admin_notifications</code> - Anomaly alerts</li>
+                </ul>
+            </div>
+
+            <!-- Step 6: Index Ordinances -->
+            <div class="content-section">
+                <h2 id="step6">Step 6: Index Ordinance Documents</h2>
+                <p>Process PDF ordinances and create search indices:</p>
+                <pre><code>python document_processor.py</code></pre>
+
+                <p><strong>Expected Processing Time:</strong> 10-30 minutes for 24 ordinances</p>
+                
+                <h3>What Happens During Indexing:</h3>
+                <ol>
+                    <li>Reads PDFs from <code>downloaded_pdfs/</code> directory</li>
+                    <li>Extracts text using Docling (with OCR for scanned docs)</li>
+                    <li>Chunks text into 512-token segments with 50-token overlap</li>
+                    <li>Generates embeddings using MiniLM model</li>
+                    <li>Uploads vectors to Qdrant Cloud</li>
+                    <li>Creates BM25 keyword index and saves to <code>index/</code></li>
+                </ol>
+
+                <h3>Success Indicators:</h3>
+                <pre><code>✅ Processed ord2023-045.pdf (15 chunks)
+✅ Processed ord2025-047.pdf (12 chunks)
+...
+✅ Created Qdrant collection: naga_ordinances (150 vectors)
+✅ Saved BM25 index: index/bm25_ordinances.pkl
+✅ Indexing complete!</code></pre>
+
+                <div class="alert alert-warning">
+                    <strong>First-Time Setup:</strong> If you don't have ordinance PDFs, contact the project maintainers 
+                    or use the sample data in <code>gdrive_pdf/downloaded_pdfs/</code>.
+                </div>
+            </div>
+
+            <!-- Step 7: Verify Setup -->
+            <div class="content-section">
+                <h2 id="step7">Step 7: Verify Setup</h2>
+                <pre><code>python verify_setup.py</code></pre>
+
+                <h3>Expected Output:</h3>
+                <pre><code>✅ Environment variables loaded
+✅ Google API Key found
+✅ Qdrant URL found
+✅ Supabase configuration found
+
+Testing connections...
+✅ Qdrant connection successful
+✅ Collection 'naga_ordinances' found (150 vectors)
+✅ BM25 index found
+✅ Supabase connection successful
+
+All systems operational! 🎉</code></pre>
+
+                <h3>Troubleshooting:</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Error</th>
+                            <th>Solution</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>❌ Collection not found</code></td>
+                            <td>Run <code>python document_processor.py</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>❌ BM25 index not found</code></td>
+                            <td>Check <code>DATA_DIR</code> in <code>.env</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>❌ Qdrant connection failed</code></td>
+                            <td>Verify <code>QDRANT_URL</code> and <code>QDRANT_API_KEY</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>❌ Supabase connection failed</code></td>
+                            <td>Check <code>SUPABASE_URL</code> and keys</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Step 8: Run Application -->
+            <div class="content-section">
+                <h2 id="step8">Step 8: Run the Application</h2>
+                <pre><code>python run.py</code></pre>
+
+                <h3>Expected Startup Logs:</h3>
+                <pre><code>✅ Supabase authentication initialized
+✅ Google API Key loaded: AIza...xxxxx
+🔧 Initializing Ordinance RAG Service...
+✅ Connected to collection: naga_ordinances (150 vectors)
+✅ Loaded BM25 index with 24 documents
+✅ Ordinance RAG Service initialized successfully
+ * Running on http://127.0.0.1:5000
+ * Press CTRL+C to quit</code></pre>
+            </div>
+
+            <!-- Step 9: Access Application -->
+            <div class="content-section">
+                <h2 id="step9">Step 9: Access the Application</h2>
+                <p>Open your browser and navigate to:</p>
+                <pre><code>http://localhost:5000</code></pre>
+
+                <h3>First-Time Setup:</h3>
+                <ol>
+                    <li>Click <strong>"Sign Up"</strong></li>
+                    <li>Enter your CSPC email (<code>@cspc.edu.ph</code> or <code>@my.cspc.edu.ph</code>)</li>
+                    <li>Create a password (minimum 8 characters)</li>
+                    <li>Click <strong>"Sign Up"</strong></li>
+                    <li>You'll be redirected to the chat interface</li>
+                </ol>
+
+                <h3>Testing the Chat:</h3>
+                <p>Try these example queries:</p>
+                <ul>
+                    <li>"What is Ordinance 2023-045 about?"</li>
+                    <li>"Find ordinances related to waste management"</li>
+                    <li>"What are the penalties for noise violations?"</li>
+                    <li>"Tell me about benefits for senior citizens"</li>
+                </ul>
+            </div>
+
+            <!-- Step 10: Admin Access -->
+            <div class="content-section">
+                <h2 id="step10">Step 10: Access Admin Dashboard (Optional)</h2>
+                <p>If you added your email to <code>ADMIN_EMAILS</code> in <code>.env</code>:</p>
+                <ol>
+                    <li>Log in with your admin account</li>
+                    <li>Navigate to <code>http://localhost:5000/admin</code></li>
+                    <li>View analytics, query logs, and visualizations</li>
+                </ol>
+
+                <div class="alert alert-info">
+                    <strong>Admin Features:</strong> Real-time analytics, query logs, anomaly detection, CSV/JSON exports
+                </div>
+            </div>
+
+            <!-- Next Steps -->
+            <div class="content-section">
+                <h2 id="next-steps">What's Next?</h2>
+                
+                <h3>Learn More:</h3>
+                <div class="links-grid" style="margin-top: 2rem;">
+                    <a href="../user-guide/roles.html" class="link-card">
+                        <i class="fas fa-users"></i>
+                        <h3>User Roles</h3>
+                        <p>Understand normal vs. admin users</p>
+                    </a>
+                    
+                    <a href="../admin-guide/dashboard.html" class="link-card">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Admin Dashboard</h3>
+                        <p>Explore analytics features</p>
+                    </a>
+                    
+                    <a href="../configuration/deployment.html" class="link-card">
+                        <i class="fas fa-server"></i>
+                        <h3>Deployment</h3>
+                        <p>Deploy to production</p>
+                    </a>
+                    
+                    <a href="../tech-stack.html" class="link-card">
+                        <i class="fas fa-layer-group"></i>
+                        <h3>Tech Stack</h3>
+                        <p>Understand the architecture</p>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Common Issues -->
+            <div class="content-section">
+                <h2 id="common-issues">Common Issues & Solutions</h2>
+                
+                <h3>1. Module Not Found Error</h3>
+                <pre><code>ModuleNotFoundError: No module named 'flask'</code></pre>
+                <p><strong>Solution:</strong> Activate virtual environment and reinstall dependencies:</p>
+                <pre><code>source hacknagaENV/bin/activate  # or hacknagaENV\Scripts\activate on Windows
+pip install -r requirements.txt</code></pre>
+
+                <h3>2. Port Already in Use</h3>
+                <pre><code>OSError: [Errno 98] Address already in use</code></pre>
+                <p><strong>Solution:</strong> Kill the process using port 5000 or change the port:</p>
+                <pre><code># Kill existing process
+lsof -ti:5000 | xargs kill -9
+
+# Or run on different port
+flask run --port 5001</code></pre>
+
+                <h3>3. Database Connection Error</h3>
+                <pre><code>supabase.lib.client_options.ClientOptionsError: Invalid URL</code></pre>
+                <p><strong>Solution:</strong> Verify <code>SUPABASE_URL</code> format in <code>.env</code>:</p>
+                <pre><code>SUPABASE_URL=https://xxxxx.supabase.co  # Must include https://</code></pre>
+
+                <h3>4. Gemini API Error</h3>
+                <pre><code>google.api_core.exceptions.PermissionDenied: API key not valid</code></pre>
+                <p><strong>Solution:</strong> Regenerate API key from Google AI Studio and update <code>.env</code></p>
+            </div>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <p>&copy; 2025 Team Virgo - CSPC BSCS-3B. Licensed under MIT License.</p>
+                <p>
+                    <a href="https://github.com/CSPC-BSCS-3B/Adal_Smart_Naga_Hackathon" target="_blank">
+                        <i class="fab fa-github"></i> View on GitHub
+                    </a>
+                </p>
+            </footer>
+        </main>
+    </div>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

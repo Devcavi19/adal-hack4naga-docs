@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Environment Setup - ADAL Smart Naga Documentation</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2><i class="fas fa-book"></i> ADAL Docs</h2>
+                <button class="sidebar-toggle" id="sidebarToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="../index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="../introduction.html"><i class="fas fa-info-circle"></i> Introduction</a></li>
+                    
+                    <li class="nav-section">Getting Started</li>
+                    <li><a href="../getting-started/installation.html"><i class="fas fa-download"></i> Installation</a></li>
+                    <li><a href="../getting-started/quick-start.html"><i class="fas fa-rocket"></i> Quick Start</a></li>
+                    
+                    <li class="nav-section">User Guide</li>
+                    <li><a href="../user-guide/roles.html"><i class="fas fa-users"></i> User Roles</a></li>
+                    <li><a href="../user-guide/chat-interface.html"><i class="fas fa-comments"></i> Chat Interface</a></li>
+                    <li><a href="../user-guide/authentication.html"><i class="fas fa-lock"></i> Authentication</a></li>
+                    
+                    <li class="nav-section">Admin Guide</li>
+                    <li><a href="../admin-guide/dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+                    <li><a href="../admin-guide/analytics.html"><i class="fas fa-chart-bar"></i> Analytics</a></li>
+                    <li><a href="../admin-guide/query-logs.html"><i class="fas fa-list"></i> Query Logs</a></li>
+                    
+                    <li class="nav-section">Configuration</li>
+                    <li><a href="setup.html" class="active"><i class="fas fa-cog"></i> Environment Setup</a></li>
+                    <li><a href="api-keys.html"><i class="fas fa-key"></i> API Keys</a></li>
+                    <li><a href="deployment.html"><i class="fas fa-server"></i> Deployment</a></li>
+                    
+                    <li class="nav-section">Technical</li>
+                    <li><a href="../tech-stack.html"><i class="fas fa-layer-group"></i> Tech Stack</a></li>
+                    <li><a href="../architecture.html"><i class="fas fa-sitemap"></i> Architecture</a></li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <p>Version 1.0.0</p>
+                <a href="https://github.com/CSPC-BSCS-3B/Adal_Smart_Naga_Hackathon" target="_blank">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-header">
+                <h1>Environment Setup</h1>
+                <p>Complete guide to configuring environment variables and API keys for ADAL Smart Naga</p>
+            </div>
+
+            <!-- Overview -->
+            <div class="content-section">
+                <h2 id="overview">Overview</h2>
+                <p>
+                    ADAL Smart Naga uses environment variables to manage sensitive credentials and configuration 
+                    settings. This approach keeps secrets out of version control and allows easy configuration 
+                    across development, staging, and production environments.
+                </p>
+                
+                <div class="alert alert-warning">
+                    <strong>Security Warning:</strong> Never commit <code>.env</code> files to version control. 
+                    Add <code>.env</code> to your <code>.gitignore</code> file immediately.
+                </div>
+            </div>
+
+            <!-- .env Template -->
+            <div class="content-section">
+                <h2 id="env-template">.env File Template</h2>
+                <p>Create a <code>.env</code> file in the project root directory with the following variables:</p>
+                
+                <pre><code># ============================================
+# ADAL Smart Naga - Environment Variables
+# ============================================
+
+# Flask Configuration
+SECRET_KEY=your_secret_key_here_change_in_production
+DEBUG=False
+
+# Google Gemini API
+GOOGLE_API_KEY=AIzaSy...your_actual_key
+GEMINI_MODEL=gemini-2.5-flash
+
+# Qdrant Vector Database
+QDRANT_URL=https://your-cluster.qdrant.io
+QDRANT_API_KEY=your_qdrant_api_key
+COLLECTION_NAME=naga_ordinances
+
+# Embedding Model
+EMBEDDING_MODEL=sentence-transformers/all-MiniLM-L6-v2
+
+# Data Directory (for BM25 index)
+DATA_DIR=/home/dfaurellano/avila/Adal_Smart_Naga_Hackathon/index
+
+# Supabase Configuration
+SUPABASE_URL=https://your-project.supabase.co
+SUPABASE_KEY=your_supabase_anon_key
+SUPABASE_SERVICE_KEY=your_supabase_service_role_key
+
+# Application URL
+APP_URL=http://localhost:5000
+
+# Admin Emails (comma-separated)
+ADMIN_EMAILS=admin@cspc.edu.ph,stakeholder@naga.gov.ph
+</code></pre>
+            </div>
+
+            <!-- Required Variables -->
+            <div class="content-section">
+                <h2 id="required-variables">Required Variables Explained</h2>
+                
+                <h3>1. Flask Configuration</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Variable</th>
+                            <th>Description</th>
+                            <th>Example</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>SECRET_KEY</code></td>
+                            <td>Flask session encryption key</td>
+                            <td><code>a9f8b7c6d5e4f3g2h1</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>DEBUG</code></td>
+                            <td>Enable debug mode (True/False)</td>
+                            <td><code>False</code> (production)</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="alert alert-error">
+                    <strong>Production Security:</strong> Generate a strong <code>SECRET_KEY</code> using:
+                    <pre><code>python -c "import secrets; print(secrets.token_hex(32))"</code></pre>
+                    Never use the default value in production!
+                </div>
+
+                <h3>2. Google Gemini API</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Variable</th>
+                            <th>Description</th>
+                            <th>How to Get</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>GOOGLE_API_KEY</code></td>
+                            <td>API key for Gemini LLM</td>
+                            <td><a href="https://ai.google.dev/">Google AI Studio</a></td>
+                        </tr>
+                        <tr>
+                            <td><code>GEMINI_MODEL</code></td>
+                            <td>Model version to use</td>
+                            <td><code>gemini-2.5-flash</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>3. Qdrant Vector Database</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Variable</th>
+                            <th>Description</th>
+                            <th>How to Get</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>QDRANT_URL</code></td>
+                            <td>Cloud cluster endpoint</td>
+                            <td><a href="https://cloud.qdrant.io/">Qdrant Cloud</a></td>
+                        </tr>
+                        <tr>
+                            <td><code>QDRANT_API_KEY</code></td>
+                            <td>API key for authentication</td>
+                            <td>Cluster settings page</td>
+                        </tr>
+                        <tr>
+                            <td><code>COLLECTION_NAME</code></td>
+                            <td>Vector collection name</td>
+                            <td><code>naga_ordinances</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>4. Supabase Configuration</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Variable</th>
+                            <th>Description</th>
+                            <th>How to Get</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>SUPABASE_URL</code></td>
+                            <td>Project API endpoint</td>
+                            <td>Project Settings → API</td>
+                        </tr>
+                        <tr>
+                            <td><code>SUPABASE_KEY</code></td>
+                            <td>Anonymous (public) key</td>
+                            <td>Project Settings → API → anon key</td>
+                        </tr>
+                        <tr>
+                            <td><code>SUPABASE_SERVICE_KEY</code></td>
+                            <td>Service role (admin) key</td>
+                            <td>Project Settings → API → service_role key</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="alert alert-warning">
+                    <strong>Key Distinction:</strong> Use <code>SUPABASE_KEY</code> (anon) for client-side operations 
+                    with RLS protection. Use <code>SUPABASE_SERVICE_KEY</code> for backend admin operations that bypass RLS.
+                </div>
+
+                <h3>5. Application Configuration</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Variable</th>
+                            <th>Description</th>
+                            <th>Example</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>APP_URL</code></td>
+                            <td>Public URL of application</td>
+                            <td><code>https://adal-naga.render.com</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>DATA_DIR</code></td>
+                            <td>Path to BM25 index files</td>
+                            <td><code>/app/index</code> (production)</td>
+                        </tr>
+                        <tr>
+                            <td><code>ADMIN_EMAILS</code></td>
+                            <td>Comma-separated admin emails</td>
+                            <td><code>admin@cspc.edu.ph,gov@naga.gov.ph</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Getting API Keys -->
+            <div class="content-section">
+                <h2 id="getting-api-keys">Step-by-Step: Getting API Keys</h2>
+                
+                <h3>Google Gemini API Key</h3>
+                <ol>
+                    <li>Visit <a href="https://ai.google.dev/">Google AI Studio</a></li>
+                    <li>Sign in with your Google account</li>
+                    <li>Click <strong>"Get API Key"</strong></li>
+                    <li>Create a new project or select existing</li>
+                    <li>Click <strong>"Create API Key"</strong></li>
+                    <li>Copy the key (starts with <code>AIza...</code>)</li>
+                    <li>Paste into <code>.env</code> as <code>GOOGLE_API_KEY=AIza...</code></li>
+                </ol>
+                
+                <div class="alert alert-info">
+                    <strong>Free Tier:</strong> Google AI Studio provides generous free quotas for Gemini API. 
+                    Pricing starts at ~$0.10 per 1M input tokens if you exceed free tier.
+                </div>
+
+                <h3>Qdrant Cloud Credentials</h3>
+                <ol>
+                    <li>Visit <a href="https://cloud.qdrant.io/">Qdrant Cloud</a></li>
+                    <li>Sign up for a free account</li>
+                    <li>Click <strong>"Create Cluster"</strong></li>
+                    <li>Choose <strong>"Free Tier"</strong> (1GB storage)</li>
+                    <li>Select region closest to your deployment</li>
+                    <li>Wait for cluster provisioning (~2 minutes)</li>
+                    <li>Go to <strong>"Cluster Details"</strong> → copy <strong>Cluster URL</strong></li>
+                    <li>Click <strong>"API Keys"</strong> → <strong>"Create API Key"</strong></li>
+                    <li>Copy API key to <code>.env</code></li>
+                </ol>
+
+                <h3>Supabase Configuration</h3>
+                <ol>
+                    <li>Visit <a href="https://supabase.com/">Supabase</a></li>
+                    <li>Sign up for a free account</li>
+                    <li>Click <strong>"New Project"</strong></li>
+                    <li>Enter project name (e.g., "ADAL Smart Naga")</li>
+                    <li>Set database password (save it securely!)</li>
+                    <li>Choose region closest to your users</li>
+                    <li>Wait for project setup (~2 minutes)</li>
+                    <li>Go to <strong>Project Settings</strong> → <strong>API</strong></li>
+                    <li>Copy <strong>Project URL</strong> → paste as <code>SUPABASE_URL</code></li>
+                    <li>Copy <strong>anon public</strong> key → paste as <code>SUPABASE_KEY</code></li>
+                    <li>Copy <strong>service_role</strong> key → paste as <code>SUPABASE_SERVICE_KEY</code></li>
+                </ol>
+            </div>
+
+            <!-- Verification -->
+            <div class="content-section">
+                <h2 id="verification">Verifying Configuration</h2>
+                <p>After setting up your <code>.env</code> file, verify all connections:</p>
+                
+                <pre><code>python verify_setup.py</code></pre>
+                
+                <h3>Expected Output</h3>
+                <pre><code>✅ Environment variables loaded
+✅ Google API Key found: AIza...xxxxx
+✅ Qdrant URL found: https://xxx.qdrant.io
+✅ Qdrant API Key found: ***
+✅ Supabase URL found: https://xxx.supabase.co
+✅ Supabase Keys found
+
+Testing connections...
+✅ Qdrant connection successful
+✅ Collection 'naga_ordinances' found (150 vectors)
+✅ BM25 index found: /app/index/bm25_ordinances.pkl
+✅ Supabase connection successful
+
+All systems operational! 🎉</code></pre>
+
+                <h3>Troubleshooting Common Errors</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Error</th>
+                            <th>Cause</th>
+                            <th>Solution</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>❌ GOOGLE_API_KEY not found</code></td>
+                            <td>Variable missing or typo</td>
+                            <td>Check <code>.env</code> spelling and format</td>
+                        </tr>
+                        <tr>
+                            <td><code>❌ Qdrant connection failed</code></td>
+                            <td>Invalid URL or API key</td>
+                            <td>Verify credentials in Qdrant Cloud dashboard</td>
+                        </tr>
+                        <tr>
+                            <td><code>❌ Collection not found</code></td>
+                            <td>Ordinances not indexed yet</td>
+                            <td>Run <code>python document_processor.py</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>❌ Supabase connection failed</code></td>
+                            <td>Wrong project URL or key</td>
+                            <td>Double-check Project Settings → API</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Environment-Specific -->
+            <div class="content-section">
+                <h2 id="environments">Environment-Specific Configuration</h2>
+                
+                <h3>Development (<code>localhost</code>)</h3>
+                <pre><code>DEBUG=True
+APP_URL=http://localhost:5000
+DATA_DIR=/home/yourusername/Adal_Smart_Naga_Hackathon/index</code></pre>
+
+                <h3>Production (Render/Railway)</h3>
+                <pre><code>DEBUG=False
+APP_URL=https://your-app.render.com
+DATA_DIR=/app/index
+PORT=10000  # Render assigns automatically</code></pre>
+                
+                <div class="alert alert-info">
+                    <strong>Deployment Tip:</strong> Use the hosting platform's environment variable UI instead of 
+                    uploading <code>.env</code> files to production servers. This is more secure and easier to manage.
+                </div>
+
+                <h3>Render Environment Variables</h3>
+                <p>Set these in Render Dashboard → Environment:</p>
+                <ol>
+                    <li>Go to your Render service</li>
+                    <li>Click <strong>"Environment"</strong> tab</li>
+                    <li>Click <strong>"Add Environment Variable"</strong></li>
+                    <li>Add each variable from your <code>.env</code> file</li>
+                    <li>Click <strong>"Save Changes"</strong></li>
+                    <li>Service will automatically redeploy</li>
+                </ol>
+            </div>
+
+            <!-- Security Best Practices -->
+            <div class="content-section">
+                <h2 id="security">Security Best Practices</h2>
+                
+                <h3>1. Keep Secrets Secret</h3>
+                <ul>
+                    <li>✅ Add <code>.env</code> to <code>.gitignore</code></li>
+                    <li>✅ Use different API keys for dev/staging/production</li>
+                    <li>✅ Rotate keys every 90 days</li>
+                    <li>❌ Never commit API keys to GitHub</li>
+                    <li>❌ Don't share <code>.env</code> files via email/Slack</li>
+                    <li>❌ Don't expose keys in error messages or logs</li>
+                </ul>
+
+                <h3>2. Use Separate Service Accounts</h3>
+                <ul>
+                    <li>Create separate Supabase projects for dev/prod</li>
+                    <li>Use separate Qdrant clusters for testing</li>
+                    <li>Create separate Google Cloud projects per environment</li>
+                </ul>
+
+                <h3>3. Implement Key Restrictions</h3>
+                <ul>
+                    <li><strong>Google API:</strong> Restrict to specific IP addresses (production)</li>
+                    <li><strong>Supabase:</strong> Enable RLS policies on all tables</li>
+                    <li><strong>Qdrant:</strong> Use read-only API keys for frontend if needed</li>
+                </ul>
+
+                <h3>4. Monitor and Alert</h3>
+                <ul>
+                    <li>Set up usage alerts in Google Cloud Console</li>
+                    <li>Monitor Supabase dashboard for unusual activity</li>
+                    <li>Check Qdrant metrics for API quota usage</li>
+                </ul>
+            </div>
+
+            <!-- Next Steps -->
+            <div class="content-section">
+                <h2 id="next-steps">Next Steps</h2>
+                <div class="links-grid" style="margin-top: 2rem;">
+                    <a href="api-keys.html" class="link-card">
+                        <i class="fas fa-key"></i>
+                        <h3>API Keys</h3>
+                        <p>Detailed guide for each API</p>
+                    </a>
+                    
+                    <a href="../getting-started/quick-start.html" class="link-card">
+                        <i class="fas fa-rocket"></i>
+                        <h3>Quick Start</h3>
+                        <p>Run the application locally</p>
+                    </a>
+                    
+                    <a href="deployment.html" class="link-card">
+                        <i class="fas fa-server"></i>
+                        <h3>Deployment</h3>
+                        <p>Deploy to production</p>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <p>&copy; 2025 Team Virgo - CSPC BSCS-3B. Licensed under MIT License.</p>
+                <p>
+                    <a href="https://github.com/CSPC-BSCS-3B/Adal_Smart_Naga_Hackathon" target="_blank">
+                        <i class="fab fa-github"></i> View on GitHub
+                    </a>
+                </p>
+            </footer>
+        </main>
+    </div>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>
